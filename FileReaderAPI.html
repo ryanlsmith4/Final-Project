@@ -1,0 +1,54 @@
+<label>FileReaerAPI</label> <br>
+<input id="fileItem" type="file">
+<div id="display">File will display here</div>
+
+<script>
+    var screenDisplay = document.getElementById('display');
+    var fileInput = document.getElementById('fileItem');
+    fileInput.onchange = onChange;
+
+    /*Callback from a <input type="file" onchange="onChange(event)">
+    Define an onChange function whose purpose is to update the screen onchange
+    */
+    function onChange(event) {
+        console.log(event);
+        var file = event.target.files[0];
+        var reader = new FileReader();
+
+        reader.onloadstart = function(event) {
+            console.log('File has begun loading');
+            // show progress spinner...
+        }
+
+    //This is a handler in the fileReader class that handles error
+        reader.onerror = function(event) {
+            console.log('there was an error reading your file');
+        }
+
+        reader.onabort = function(event) {
+            console.log('Your File caused FileReader() to abort');
+        }
+
+        reader.onprogress = function(event) {
+            console.log('im still loading...')
+            // spin the progress spinner
+            // update time spent loading...
+        }
+    /*This property handles the file once it is fully loaded hence why we
+    update the innerHTML at this step
+    */
+        reader.onload = function(event) {
+            console.log(event)
+            // hide progress spinner
+            // The file's text will be
+            const result = event.target.result;
+            // console.log(results)
+            screenDisplay.innerHTML = result;
+        };
+
+        reader.readAsText(file);
+        // reader.result(file)
+
+
+    }
+</script>

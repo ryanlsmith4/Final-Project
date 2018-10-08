@@ -1,0 +1,39 @@
+<div>There is no interesting HTML on this page. Check Out Console!</div>
+
+<script>
+    //This is a Experimental API and
+    //Some properties are depricated or don't work at all
+    //this is the main API Point window.navigator
+    var navigatorObject = window.navigator;
+    var netInfo = navigatorObject.connection;
+    var bat = '';
+    // This is a promise  promise works asynchrously therefore it return the info
+    // we want after all else see console log.
+         navigatorObject.getBattery().then((bat) => {
+        console.log(`Battery level: ${(bat.level * 100)}%`);
+        console.log(`Discharge Rate: ${bat.dischargingTime} seconds`);
+    }).catch((error) => {
+        console.error(error);
+    })
+    console.log(`Your Network Speed for reload was ${netInfo.downlink} mbps`);
+
+// functon returns an index to which browser in operation
+// not supported or unknown on Edge, IE, Opera, Safari, Edge Mobile
+// Opera Android, Safari iOS and Samsung Internet
+// Could be Useful in determining how to run a webpage
+    function getBrowserId() {
+
+        var
+            aKeys = ["MSIE", "Firefox", "Safari", "Chrome", "Opera"],
+            sUsrAg = navigator.userAgent,
+            nIdx = aKeys.length - 1;
+
+        for (nIdx; nIdx > -1 && sUsrAg.indexOf(aKeys[nIdx]) === -1; nIdx--);
+
+
+        return aKeys[nIdx]
+
+    }
+
+    console.log(`Your Browser is: ${getBrowserId()}`);
+</script>
