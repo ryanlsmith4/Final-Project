@@ -3,6 +3,7 @@
 <div id="display">File will display here</div>
 
 <script>
+    //Declare Dom variables
     var screenDisplay = document.getElementById('display');
     var fileInput = document.getElementById('fileItem');
     fileInput.onchange = onChange;
@@ -21,14 +22,18 @@
         }
 
     //This is a handler in the fileReader class that handles error
+    //We can have it execute any time there is an error things that could give
+    //errors are loss of file while reading or else
         reader.onerror = function(event) {
             console.log('there was an error reading your file');
         }
-
+    //this method will run if the operation aborts on execution this could happen
+    //if the user turn off computer or the file gets deleted
         reader.onabort = function(event) {
             console.log('Your File caused FileReader() to abort');
         }
-
+    //this method could be useful if you had a very large file and
+    //wanted the user to see that the file was indeed loading 
         reader.onprogress = function(event) {
             console.log('im still loading...')
             // spin the progress spinner
