@@ -1,4 +1,33 @@
-<div>There is no interesting HTML on this page. Check Out Console!</div>
+
+<style>
+    body {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: Helvetica;
+    }
+
+    div {
+        color: #444;
+        font-size: 68px;
+        font-weight: bolder;
+    }
+
+    #percent {
+        height: 40px;
+        background-color: red;
+    }
+    .t {
+        width: 200px;
+        border: 1px solid;
+    }
+</style>
+<div id="browser">
+</div> <br>
+<div id="batt"> </div>
+<div class="t">
+<div id="percent"></div>
+</div>
 
 <script>
     //This is a Experimental API and
@@ -9,18 +38,24 @@
     var bat = '';
     // This is a promise  promise works asynchrously therefore it return the info
     // we want after all else see console log.
-         navigatorObject.getBattery().then((bat) => {
+    navigatorObject.getBattery().then((bat) => {
         console.log(`Battery level: ${(bat.level * 100)}%`);
         console.log(`Discharge Rate: ${bat.dischargingTime} seconds`);
+        // document.getElementById('batt').innerHTML = `Battery level: ${(bat.level * 100)}%`;
+        return navigatorObject.getBattery();
+    }).then((bat) => {
+        document.getElementById('percent').style.width = `${(bat.level * 100)}%`
+         document.getElementById('batt').innerHTML = `Battery level: ${(bat.level * 100)}%`;
     }).catch((error) => {
         console.error(error);
+        document.getElementById('batt').innerHTML = `Battery not available`;
     })
     console.log(`Your Network Speed for reload was ${netInfo.downlink} mbps`);
 
-// functon returns an index to which browser in operation
-// not supported or unknown on Edge, IE, Opera, Safari, Edge Mobile
-// Opera Android, Safari iOS and Samsung Internet
-// Could be Useful in determining how to run a webpage
+    // functon returns an index to which browser in operation
+    // not supported or unknown on Edge, IE, Opera, Safari, Edge Mobile
+    // Opera Android, Safari iOS and Samsung Internet
+    // Could be Useful in determining how to run a webpage
     function getBrowserId() {
 
         var
@@ -31,9 +66,9 @@
         for (nIdx; nIdx > -1 && sUsrAg.indexOf(aKeys[nIdx]) === -1; nIdx--);
 
 
-        return aKeys[nIdx]
+        return document.getElementById('browser').innerHTML = `Your Browser is ${aKeys[nIdx]}`
+}
 
-    }
 
-    console.log(`Your Browser is: ${getBrowserId()}`);
+    console.log(`${getBrowserId()}`);
 </script>

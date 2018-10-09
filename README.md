@@ -19,3 +19,4 @@ work and how to get started with them.
 #### NetworkInformation
     Look at code, see the promise and information it gives up.
     Also, see the network speed and the and Browser type. Usefulness could include determining information about device accessing the webpage.
+    Styles used to represent the battery level as an image 
