@@ -33,8 +33,9 @@
             console.log('Your File caused FileReader() to abort');
         }
     //this method could be useful if you had a very large file and
-    //wanted the user to see that the file was indeed loading 
+    //wanted the user to see that the file was indeed loading
         reader.onprogress = function(event) {
+            console.log(event);
             console.log('im still loading...')
             // spin the progress spinner
             // update time spent loading...

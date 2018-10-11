@@ -44,6 +44,7 @@
         // document.getElementById('batt').innerHTML = `Battery level: ${(bat.level * 100)}%`;
         return navigatorObject.getBattery();
     }).then((bat) => {
+         console.log(bat)
         document.getElementById('percent').style.width = `${(bat.level * 100)}%`
          document.getElementById('batt').innerHTML = `Battery level: ${(bat.level * 100)}%`;
     }).catch((error) => {
